@@ -9,6 +9,6 @@ local settings = {}
 settings.host = "127.0.0.1"
 settings.db = "gta5_gamemode_essential"
 settings.user = "root"
-settings.password = "CHANGE_THIS_PUBLIC_KEY"
+settings.password = ""
 
 return settings

@@ -58,18 +58,18 @@ CREATE TABLE `coordinates` (
 --
 
 INSERT INTO `coordinates` (`id`, `x`, `y`, `z`, `name`) VALUES
-(1, 2681.752, 2800.187, 40.36, 'Mines du vieux Los Santos'),
-(2, 1077.64, -1989.417, 30.883, 'Fonte des métaux'),
-(3, -510.449, -2751.847, 6.2, 'Vente du fer'),
-(7, -801.323, 5403.05, 34.0766, 'Récolte bois'),
-(8, -555.881, 5319.96, 73.5997, 'Traitement bois'),
-(9, -473.829, -985.232, 23.5457, 'Vente du bois'),
-(10, -1813.25, 2105.58, 135.808, 'Vignobles'),
-(11, 823.7, 2193.76, 52.0271, 'Atelier du vin'),
-(12, -561.508, 302.273, 82.6591, 'Vente du vin'),
-(13, 2217.01, 5577.23, 53.8241, 'Récolte weed'),
-(14, -1674.55, -1069.29, 13.1529, 'Traitement weed'),
-(15, 485.292, -3382.2, 6.06991, 'Vente weed');
+(1, 2681.752, 2800.187, 40.36, 'Minas de Los Santos'),
+(2, 1077.64, -1989.417, 30.883, 'Fuente de metal'),
+(3, -510.449, -2751.847, 6.2, 'Venta de Hierro'),
+(7, -801.323, 5403.05, 34.0766, 'Recolecta de madera'),
+(8, -555.881, 5319.96, 73.5997, 'Tratamiento de madera'),
+(9, -473.829, -985.232, 23.5457, 'Venta de madera'),
+(10, -1813.25, 2105.58, 135.808, 'Viñedos'),
+(11, 823.7, 2193.76, 52.0271, 'Bodega'),
+(12, -561.508, 302.273, 82.6591, 'Venta de vino'),
+(13, 2217.01, 5577.23, 53.8241, 'Plantacion de Marihuana'),
+(14, -1674.55, -1069.29, 13.1529, 'Secadero de Marihuana'),
+(15, 485.292, -3382.2, 6.06991, 'Venta de Marihuana');
 
 -- --------------------------------------------------------
 
@@ -93,14 +93,14 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `libelle`, `isIllegal`, `food`, `water`, `needs`, `limitation`, `type`) VALUES
-(1, 'Pierre', 0, '0', '0', '0', NULL, 'object'),
-(3, 'Minerais de fer', 0, '0', '0', '0', NULL, 'object'),
-(6, 'Fer', 0, '0', '0', '0', NULL, 'object'),
-(7, 'Diamant', 0, '0', '0', '0', NULL, 'object'),
+(1, 'Piedra', 0, '0', '0', '0', NULL, 'object'),
+(3, 'Mineral de hierro', 0, '0', '0', '0', NULL, 'object'),
+(6, 'Hierro', 0, '0', '0', '0', NULL, 'object'),
+(7, 'Diamante', 0, '0', '0', '0', NULL, 'object'),
 (30, 'Burger', 0, '30', '0', '0', NULL, 'food'),
 (31, 'Coca-Cola', 0, '5', '20', '0', NULL, 'drink'),
-(32, 'Morceaux de bois', 0, '0', '0', '0', 15, 'object'),
-(33, 'Planches', 0, '0', '0', '0', 15, 'object'),
+(32, 'Trozo de madera', 0, '0', '0', '0', 15, 'object'),
+(33, 'Tablones', 0, '0', '0', '0', 15, 'object'),
 (34, 'Raisins', 0, '5', '5', '0', 15, 'food'),
 (36, 'Vin en cubi', 0, '0', '0', '0', 15, 'object'),
 (37, 'Feuilles de chanvre', 1, '0', '0', '0', 15, 'object'),
@@ -124,30 +124,30 @@ CREATE TABLE `jobs` (
 --
 
 INSERT INTO `jobs` (`job_id`, `job_name`, `salary`, `whitelisted`) VALUES
-(1, 'Chômeur', 200, 0),
-(2, 'LSPD (Cadet)', 450, 1),
-(3, 'LSPD (Officier)', 750, 1),
-(4, 'LSPD (Sergent)', 1000, 1),
-(5, 'LSPD (Commandant)', 1600, 1),
-(6, 'CHU (Interne)', 400, 1),
-(7, 'CHU (Médecin)', 850, 1),
-(8, 'CHU (Chef de service)', 900, 1),
-(9, 'CHU (Directeur)', 2700, 1),
+(1, 'Desempleado', 200, 0),
+(2, 'LSPD (Cadete)', 450, 1),
+(3, 'LSPD (Oficial)', 750, 1),
+(4, 'LSPD (Sargento)', 1000, 1),
+(5, 'LSPD (Comandante)', 1600, 1),
+(6, 'CHU (Interno)', 400, 1),
+(7, 'CHU (Médico)', 850, 1),
+(8, 'CHU (Jefe de servicio)', 900, 1),
+(9, 'CHU (Director)', 2700, 1),
 (10, 'GSPR 1', 2200, 1),
 (11, 'GSPR 2', 3200, 1),
 (12, 'GSPR 3', 4800, 1),
-(13, 'Gouverneur', 5000, 1),
-(14, 'Ministre de l\'Économie', 3000, 1),
-(15, 'Ministre de l\'Intérieur', 3000, 1),
-(16, 'Ministre de la Communication', 3000, 1),
-(17, 'Bûcheron', 90, 0),
-(18, 'Viticulteur', 75, 0),
-(19, 'Mineur', 75, 0),
-(20, 'Illegal', 0, 0),
-(21, 'Livreur', 75, 0),
+(13, 'Gobernador', 5000, 1),
+(14, 'Ministro de Economia', 3000, 1),
+(15, 'Ministro de Interior', 3000, 1),
+(16, 'Ministro de Comunicacion', 3000, 1),
+(17, 'Leñador', 90, 0),
+(18, 'Viticultor', 75, 0),
+(19, 'Minero', 75, 0),
+(20, 'Ilegal', 0, 0),
+(21, 'Repartidor', 75, 0),
 (22, 'Taxi', 90, 0),
-(23, 'Juge', 1300, 1),
-(24, 'Avocat', 1000, 1);
+(23, 'Juez', 1300, 1),
+(24, 'Abogado', 1000, 1);
 
 -- --------------------------------------------------------
 
@@ -166,8 +166,8 @@ CREATE TABLE `licences` (
 --
 
 INSERT INTO `licences` (`id`, `name`, `price`) VALUES
-(1, 'De conduire', 1000),
-(2, 'De port d\'arme', 5000);
+(1, 'De conducir', 1000),
+(2, 'De posesion de armas', 5000);
 
 
 
@@ -195,10 +195,10 @@ CREATE TABLE `recolt` (
 --
 
 INSERT INTO `recolt` (`ID`, `raw_id`, `treated_id`, `job_id`, `price`, `field_id`, `treatment_id`, `seller_id`, `nom`, `isIllegal`) VALUES
-(4, 1, 3, 19, 40, 1, 2, 3, 'Mineur', 0),
-(5, 32, 33, 17, 55, 7, 8, 9, 'Bucheron', 0),
-(6, 34, 36, 18, 40, 10, 11, 12, 'Viticulteur', 0),
-(7, 37, 38, 1, 95, 13, 14, 15, 'Weed', 1);
+(4, 1, 3, 19, 40, 1, 2, 3, 'Minero', 0),
+(5, 32, 33, 17, 55, 7, 8, 9, 'Leñador', 0),
+(6, 34, 36, 18, 40, 10, 11, 12, 'Viticultor', 0),
+(7, 37, 38, 1, 95, 13, 14, 15, 'Canabicultor', 1);
 
 -- --------------------------------------------------------
 
@@ -297,7 +297,7 @@ CREATE TABLE `user_licence` (
 
 CREATE TABLE `user_message` (
   `owner_id` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL DEFAULT 'Inconnu',
+  `name` varchar(255) NOT NULL DEFAULT 'Desconocido',
   `msg` varchar(255) NOT NULL,
   `date` varchar(255) DEFAULT '01/01/1970',
   `has_read` int(11) NOT NULL DEFAULT '0',
@@ -317,7 +317,7 @@ CREATE TABLE `user_phonelist` (
   `contact_id` varchar(255) NOT NULL,
   `owner_id` varchar(255) NOT NULL,
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL DEFAULT 'Contact'
+  `name` varchar(255) NOT NULL DEFAULT 'Contacto'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 

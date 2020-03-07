@@ -2,9 +2,9 @@ require "resources/essentialmode/lib/MySQL"
 MySQL:open("127.0.0.1", "gta5_gamemode_essential", "root", "")
 -- PARAMS
 local malusfood = 5
-local bonusfood = 100 -- MAX FOOD
+local bonusfood = 200 -- MAX FOOD
 local maluswater = 5
-local bonuswater = 100 -- MAX WATER
+local bonuswater = 200 -- MAX WATER
 local malusneeds = 0 -- MAX NEEDS
 local bonusneeds = 0
 -- GLOBAL TIMER
@@ -88,7 +88,7 @@ AddEventHandler('gabs:removecalories', function(source, calories)
 			CancelEvent()
 		end
       else
-        TriggerClientEvent('chatMessage', source, "", {0, 0, 200}, "Mort de faim")
+        TriggerClientEvent('chatMessage', source, "", {0, 0, 200}, "Muerto de hambre")
         CancelEvent()
       end
   end)
@@ -159,7 +159,7 @@ AddEventHandler('gabs:removewater', function(source, waterdrops)
 			CancelEvent()
 		end
       else
-        TriggerClientEvent('chatMessage', source, "", {0, 0, 200}, "Mort de soif")
+        TriggerClientEvent('chatMessage', source, "", {0, 0, 200}, "Muerto de sed")
         CancelEvent()
       end
   end)
@@ -175,7 +175,7 @@ AddEventHandler('gabs:addwater', function(source, waterdrops)
         local new_food, new_water, new_needs = table.unpack{checkneeds(player)}
         TriggerClientEvent("gabs:setwater", source, new_water)
 --        TriggerClientEvent("gabs:add_water", source, waterdrops)
-  	TriggerClientEvent('chatMessage', source, "", {0, 0, 200}, "Vous avez bu")
+  	TriggerClientEvent('chatMessage', source, "", {0, 0, 200}, "Has bebido")
 		TriggerClientEvent("gabs:drink", source)
         CancelEvent()
 		if(tonumber(new_water) <= 0) then
@@ -183,7 +183,7 @@ AddEventHandler('gabs:addwater', function(source, waterdrops)
 			CancelEvent()
 		end
       else
-        TriggerClientEvent('chatMessage', source, "", {0, 0, 200}, "Vous n'avez pas soif")
+        TriggerClientEvent('chatMessage', source, "", {0, 0, 200}, "No tienes sed")
         CancelEvent()
       end
   end)

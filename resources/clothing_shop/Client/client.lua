@@ -5,7 +5,7 @@
 
 local firstspawn = 0
 
-local lang = 'fr'
+local lang = 'es'
 
 local txt = {
   ['en'] = {
@@ -30,6 +30,32 @@ local txt = {
         ['message'] = "Press ~INPUT_CONTEXT~ to ~g~shop for clothes",
         ['close'] = "Close"
   },
+  
+  
+  ['es'] = {
+        ['title'] = 'Binco Shop',
+        ['gender'] = 'Cambiar genero',
+        ['head'] = 'Cabeza',
+        ['body'] = 'Cuerpo',
+        ['pants'] = 'Pantalones',
+        ['shoes'] = 'Zapatos',
+        ['vests'] = 'Vestidos',
+        ['bags'] = 'Bolsas',
+        ['close'] = 'Cerrar',
+        ['hair'] = 'Pelo',
+        ['face'] = 'Cara',
+        ['ears'] = 'Orejas',
+        ['glasses'] = 'Gafas',
+        ['masks'] = "Mascaras",
+        ['hats'] = "Sombreros",
+        ['gloves'] = "Brazos y guantes",
+        ['shirts'] = "Camisetas",
+        ['jackets'] = "Chaquetas",
+        ['message'] = "Presiona ~INPUT_CONTEXT~ para ~g~comprar ropa",
+        ['close'] = "Cerrar"
+  },
+  
+  
 
     ['fr'] = {
         ['title'] = 'Nouveau look',

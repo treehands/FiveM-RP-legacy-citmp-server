@@ -14,7 +14,7 @@ AddEventHandler('gabs:menu', function(fooditem)
 							TriggerClientEvent("food:veat", source, v.value)
 						end
 					else
-						TriggerClientEvent('chatMessage', source, "", {0, 0, 200}, "Vous n'avez pas assez d'argent ~g($".. v.value .. ")~w.")
+						TriggerClientEvent('chatMessage', source, "", {0, 0, 200}, "No tienes suficiente dinero ~g($".. v.value .. ")~w.")
 					end
 				end
 			end
@@ -41,10 +41,10 @@ AddEventHandler('gabs:menuvdk', function(fooditem)
 					user:removeMoney(fooditem[3])
 					TriggerClientEvent("player:receiveItem", source, fooditem[1], fooditem[2])
 				else
-					TriggerClientEvent('chatMessage', source, "", {0, 0, 200}, "Vous n'avez pas assez d'argent.")
+					TriggerClientEvent('chatMessage', source, "", {0, 0, 200}, "No tienes suficiente dinero.")
 				end
 			else
-				TriggerClientEvent('chatMessage', source, "", {0, 0, 200}, "Vous n'avez pas de place dans votre inventaire.")
+				TriggerClientEvent('chatMessage', source, "", {0, 0, 200}, "No tienes espacio en tu inventario.")
 			end
 		end)
 end)

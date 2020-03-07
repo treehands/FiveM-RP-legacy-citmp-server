@@ -17,7 +17,7 @@ Menu.buttonCount = 0
 Menu.titleCount = 0
 Menu.selection = 0
 Menu.hidden = true
-MenuTitle = "Superette 7 Eleven"
+MenuTitle = "Supermercados 7 Eleven"
 -------------------
 posXMenu = 0.1
 posYMenu = 0.05
@@ -180,8 +180,8 @@ function ShopMenu()
 	else
 		Menu.addTitle("MENU")
 		Menu.addButton("Burger ($5)","buymenu",{30, 1, 5})
-		--Menu.addButton("Banh Bao ($20)","buymenu","Banh Bao")
-		--Menu.addButton("Eau du Mont Chiliad ($70)","buymenu","Eau")
+		Menu.addButton("Ensalada ($5)","buymenu",{40, 1, 5})
+		Menu.addButton("Agua ($1)","buymenu",{41, 1, 2})
 		Menu.addButton("Coca-Cola ($2)","buymenu",{31, 1, 2})
 		
 --		Menu.addButton("FoodName","buymenu",{ itemId, qty, price}) -- itemId = id de l'item vdk (Table : items), qty = quantité et price = prix

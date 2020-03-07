@@ -23,7 +23,7 @@ Citizen.CreateThread(function()
 		SetBlipScale(blip, 0.8)
 		SetBlipAsShortRange(blip, true)
 		BeginTextCommandSetBlipName("STRING")
-		AddTextComponentString("Superette 7 Eleven")
+		AddTextComponentString("Super 7 Eleven")
 		EndTextCommandSetBlipName(blip)
 	end
 end)
@@ -37,7 +37,7 @@ Citizen.CreateThread(function()
 			if(Vdist(v.x, v.y, v.z, pos.x, pos.y, pos.z) < 20.0)then
 				DrawMarker(1, v.x, v.y, v.z - 1, 0, 0, 0, 0, 0, 0, 1.0001, 1.0001, 1.5001, 0, 25, 165, 165, 0,0, 0,0)
 				if(Vdist(v.x, v.y, v.z, pos.x, pos.y, pos.z) < 1.0)then
-					DisplayHelpText("Appuyer sur ~INPUT_CONTEXT~ pour acheter de ~y~la nourriture~w~.")
+					DisplayHelpText("Pulsa ~INPUT_CONTEXT~ para comprar ~y~comida~w~.")
 					if(IsControlJustReleased(1, 51))then
 						if showfoodmenu then
 							ShopMenu()

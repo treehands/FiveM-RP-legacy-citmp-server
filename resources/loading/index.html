@@ -140,9 +140,9 @@ body {
 <center><img class="logo" src="images/logo.png"></center>
   
             <div class="letni">
-                <h2>Chargement</h2>
+                <h2>Cargando</h2>
                 <div class="loadbar"></div>
-                <div class="load"><div class="thingy"></div><p><font face="Raleway" color="red">Connexion en cours</p></div>
+                <div class="load"><div class="thingy"></div><p><font face="Raleway" color="red">Conectando al servidor</p></div>
             </div>
             
         </div>
@@ -191,7 +191,7 @@ const handlers = {
 
     onLogLine(data)
     {
-        document.querySelector('.letni p').innerHTML = "Progression: " + data.message;
+        document.querySelector('.letni p').innerHTML = "Progresion: " + data.message;
     }
 };
 

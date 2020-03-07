@@ -44,7 +44,7 @@ AutoStartResources:
     - personnal_menu
     - company_mineur
     - company_bucheron
-    - whitelist
+   # - whitelist
     - sync
     - company_viticulteur
     - lscustoms
@@ -57,22 +57,21 @@ AutoStartResources:
     - blanchiement
     - es_afterStart
 
-
 # do change
 RconPassword: MLKhHLghGKgkgjhGJHgjhokds5q7_d5ezezzdtyr
 
 # configure this, please
-Hostname: 'GITHUB.COM^4/XCHOPIN - ^0FIVEM ^6BOILERPLATE'
+Hostname: 'bToServer'
 
 ScriptDebug: true
 
 DebugLog: true
 
 # set to false to hide from the online server list
-Announce: true
+Announce: false
 
 # set to false to require players to be signed in to Steam
-DisableAuth: false
+DisableAuth: true
 
 # set to true to disable local script hook plugins
 DisableScriptHook: true

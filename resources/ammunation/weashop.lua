@@ -1,14 +1,14 @@
 local weashop = {
 	opened = false,
-	title = "Armurerie Los Santos",
+	title = "Armeria Los Santos",
 	currentmenu = "main",
 	lastmenu = nil,
 	currentpos = nil,
 	selectedbutton = 0,
 	marker = { r = 0, g = 155, b = 255, a = 200, type = 1 },
 	menu = {
-		x = 0.9,
-		y = 0.08,
+		x = 0.1,
+		y = 0.2,
 		width = 0.2,
 		height = 0.04,
 		buttons = 10,
@@ -20,18 +20,18 @@ local weashop = {
 			title = "CATEGORIES",
 			name = "main",
 			buttons = {
-				{title = "Armes blanches", name = "Melee", description = "Couteau, batte de baseball,..."},
-				{title = "Autres", name = "Autres", description = "Armes à feu et autres"},
+				{title = "Armas Blancas", name = "Melee", description = "Couteau, batte de baseball,..."},
+				{title = "Otras", name = "Autres", description = "Armes à feu et autres"},
 			}
 		},
 		["Melee"] = {
 			title = "Melee",
 			name = "Armes blanches",
 			buttons = {
-				{title = "Couteau", name = "Knife", costs = 850, description = {}, model = "WEAPON_KNIFE"},
-				{title = "Machette", name = "Machette", costs = 950, description = {}, model = "WEAPON_MACHETE"},
+				{title = "Cuchillo", name = "Knife", costs = 850, description = {}, model = "WEAPON_KNIFE"},
+				{title = "Machete", name = "Machette", costs = 950, description = {}, model = "WEAPON_MACHETE"},
 				
-				{title = "Lampe torche", name = "Flashlight", costs = 400, description = {}, model = "WEAPON_FLASHLIGHT"},
+				{title = "Linterna", name = "Flashlight", costs = 400, description = {}, model = "WEAPON_FLASHLIGHT"},
 			}
 			
 		},
@@ -39,13 +39,13 @@ local weashop = {
 			title = "Autres",
 			name = "Autres",
 			buttons = {
-				{title = "Pistolet", name = "Pistol", costs = 3000, description = {}, model = "WEAPON_PISTOL"},
-				{title = "Pistolet de combat", name = "CombatPistol", costs = 4000, description = {}, model = "WEAPON_COMBATPISTOL"},
+				{title = "Pistola", name = "Pistol", costs = 3000, description = {}, model = "WEAPON_PISTOL"},
+				{title = "Pistola de combate", name = "CombatPistol", costs = 4000, description = {}, model = "WEAPON_COMBATPISTOL"},
 				{title = "Revolver", name = "Revolver", costs = 3500, description = {}, model = "WEAPON_REVOLVER"},
-				{title = "Parachute", name = "Parachute", costs = 800, description = {}, model = "GADGET_PARACHUTE"},
-				{title = "Coktail Molotov", name = "Molotov", costs = 6500, description = {}, model = "WEAPON_MOLOTOV"},
+				{title = "Paracaidas", name = "Parachute", costs = 800, description = {}, model = "GADGET_PARACHUTE"},
+				{title = "Coktel Molotov", name = "Molotov", costs = 6500, description = {}, model = "WEAPON_MOLOTOV"},
 				{title = "Fusil Gusenberg", name = "Gusenberg", costs = 29500, description = {}, model = "WEAPON_GUSENBERG"},
-				{title = "Lanceur d'artifices", name = "Artifice", costs = 10000, description = {}, model = "WEAPON_FIREWORK"},
+				{title = "Lanzador de cohetes", name = "Artifice", costs = 10000, description = {}, model = "WEAPON_FIREWORK"},
 
 			}
 		}
@@ -102,7 +102,7 @@ function ShowWeashopBlips(bool)
 			-- 60 58 137
 			SetBlipSprite(blip,76,7)
 			BeginTextCommandSetBlipName("STRING")
-			AddTextComponentString('Armurerie de Los Santos')
+			AddTextComponentString('Armeria de Los Santos')
 			EndTextCommandSetBlipName(blip)
 			SetBlipAsShortRange(blip,true)
 			SetBlipAsMissionCreatorBlip(blip,true)
@@ -115,7 +115,7 @@ function ShowWeashopBlips(bool)
 				for i,b in ipairs(weashop_blips) do
 					if IsPlayerWantedLevelGreater(GetPlayerIndex(),0) == false and weashop.opened == false and IsPedInAnyVehicle(LocalPed(), true) == false and  GetDistanceBetweenCoords(b.pos.entering[1],b.pos.entering[2],b.pos.entering[3],GetEntityCoords(LocalPed())) < 2 then
 						DrawMarker(1,b.pos.entering[1],b.pos.entering[2],b.pos.entering[3],0,0,0,0,0,0,2.001,2.0001,0.5001,0,155,255,200,0,0,0,0)
-						drawTxt('Appuyez sur ~g~ENTRER~s~ pour parler ~b~au marchand d\'armes',0,1,0.5,0.8,0.6,255,255,255,255)
+						drawTxt('Presiona ~g~ENTER~s~ para ~b~comprar armas',0,1,0.5,0.8,0.6,255,255,255,255)
 						currentlocation = b
 						inrange = true
 					end

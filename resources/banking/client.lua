@@ -154,12 +154,12 @@ if enableBankingGui then
       Citizen.Wait(0)
       if(IsNearBank() or IsNearATM()) then
         if (atBank == false) then
-          DisplayHelpText("Appuyer sur ~INPUT_CONTEXT~ pour ouvrir le ~y~menu~w~.")
+          DisplayHelpText("Pulsar ~INPUT_CONTEXT~ para abrir el ~y~menu~w~.")
         end
         atBank = true
         if IsControlJustReleased(1, 51)  then -- IF INPUT_PICKUP Is pressed
           if (IsInVehicle()) then
-           DisplayHelpText("~r~Vous ne pouvez pas utiliser l'ATM depuis un véhicule~w~.")
+           DisplayHelpText("~r~No puedes usar un cajero desde aqui~w~.")
           else
             if bankOpen then
               closeGui()

@@ -27,14 +27,14 @@ AddEventHandler('CheckMoneyForWea', function(weapon,price)
 				{['@username'] = player, ['@weapon'] = weapon, ['@cost'] = (price)/cost_ratio})
 				-- Trigger some client stuff
 				TriggerClientEvent('FinishMoneyCheckForWea',source)
-				TriggerClientEvent("es_freeroam:notify", source, "CHAR_AMMUNATION", 1, "Armurerie Los Santos", false, "Achat effectué\n")
+				TriggerClientEvent("es_freeroam:notify", source, "CHAR_AMMUNATION", 1, "Armería Los Santos", false, "Achat effectué\n")
 			else
 				TriggerClientEvent('ToManyWeapons',source)
-				TriggerClientEvent("es_freeroam:notify", source, "CHAR_AMMUNATION", 1, "Armurerie Los Santos", false, "Inventaire complet! (max: "..max_number_weapons..")\n")
+				TriggerClientEvent("es_freeroam:notify", source, "CHAR_AMMUNATION", 1, "Armería Los Santos", false, "Inventaire complet! (max: "..max_number_weapons..")\n")
 			end
 		else
 			-- Inform the player that he needs more money
-			TriggerClientEvent("es_freeroam:notify", source, "CHAR_AMMUNATION", 1, "Armurerie Los Santos", false, "Tu n'as pas assez d'argent...\n")
+			TriggerClientEvent("es_freeroam:notify", source, "CHAR_AMMUNATION", 1, "Armería Los Santos", false, "Tu n'as pas assez d'argent...\n")
 		end
 	end)
 end)
@@ -62,7 +62,7 @@ AddEventHandler("weaponshop:GiveWeaponsToPlayer", function(player)
 					TriggerClientEvent("giveWeapon_spawn", player, v.weapon_model, delay)
 				--	user:removeMoney((v.withdraw_cost))
 			--	else
-			--		TriggerClientEvent("es_freeroam:notify", source, "CHAR_AMMUNATION", 1, "Armurerie Los Santos", false, "Tu n'as pas assez d'argent...\n")
+			--		TriggerClientEvent("es_freeroam:notify", source, "CHAR_AMMUNATION", 1, "Armería Los Santos", false, "Tu n'as pas assez d'argent...\n")
 			--		return
 			--	end
 			end

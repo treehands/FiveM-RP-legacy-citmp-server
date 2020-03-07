@@ -85,8 +85,8 @@ AddEventHandler('playerSpawned', function(spawn)
 		TriggerServerEvent("projectEZ:SpawnPlayer")
 		firstspawn = 1
 		SetNotificationTextEntry("STRING");
-		AddTextComponentString("Règlement et constitution sur\n~b~forum.cana-rp.fr")
-      	SetNotificationMessage("CHAR_HUMANDEFAULT", "CHAR_HUMANDEFAULT", true, 1, "Bienvenue sur", "Cana-RP.fr")
+		AddTextComponentString("Servidor Roleplay")
+      	SetNotificationMessage("CHAR_HUMANDEFAULT", "CHAR_HUMANDEFAULT", true, 1, "Bienvenido a", "bToEle Server")
       	DrawNotification(false, true);
       	Wait(8000000)
 	end

@@ -19,7 +19,7 @@ AddEventHandler('jobssystem:jobs', function(id)
         local player = user.identifier
         local nameJob = nameJob(id)
         updatejob(player, id)
-        TriggerClientEvent("es_freeroam:notify", source, "CHAR_CHAT_CALL", 1, "Pôle Emploi", false, "Félicitations, vous avez été embauché en tant que ".. nameJob)
+        TriggerClientEvent("es_freeroam:notify", source, "CHAR_CHAT_CALL", 1, "Oficina de trabajo", false, "Felicitaciones. Ahora trabajas de ".. nameJob)
         TriggerClientEvent("jobssystem:updateJob", source, nameJob)
   end)
 end)

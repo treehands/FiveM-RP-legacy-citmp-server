@@ -5,12 +5,13 @@ local changeYourJob = {
 }
 
 local jobs = {
-  {name="Chômeur", id=1},
-  {name="Bûcheron", id=17},
-  {name="Viticulteur", id=18},
-  {name="Mineur", id=19},
-  {name="Livreur", id=21},
-  {name="Chauffeur Taxi", id=22}
+  {name="Desempleado", id=1},
+  {name="Leñador", id=17},
+  {name="Viticultor", id=18},
+  {name="Minero", id=19},
+  {name="Repartidor", id=21},
+  {name="Ilegal", id=20},
+  {name="Taxi", id=22}
 }
 
 ---------------------------------- FUNCTIONS ----------------------------------
@@ -55,7 +56,7 @@ function IsNearJobs()
 end
 
 function menuJobs()
-  MenuTitle = "METIERS"
+  MenuTitle = "EMPLEOS"
   ClearMenu()
   for _, item in pairs(jobs) do
     local nameJob = item.name
@@ -86,7 +87,7 @@ Citizen.CreateThread(function()
   while true do
     Citizen.Wait(0)
     if (IsNearJobs() == true) then
-      drawTxt('Appuyer sur ~g~H~s~ pour accéder au menu des métiers',0,1,0.5,0.8,0.6,255,255,255,255)
+      drawTxt('Presiona ~g~H~s~ para acceder al menu de trabajos',0,1,0.5,0.8,0.6,255,255,255,255)
       if (IsControlJustPressed(1,Keys["H"]) and IsNearJobs() == true) then
        menuJobs()
        Menu.hidden = not Menu.hidden   

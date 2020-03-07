@@ -18,8 +18,8 @@ local options = {
     height = 0.04,
     scale = 0.4,
     font = 0,
-    menu_title = "Menu personnel",
-    menu_subtitle = "Categories",
+    menu_title = "Menu personal",
+    menu_subtitle = "Categorias",
     color_r = 192,
     color_g = 57,
     color_b = 43,
@@ -32,13 +32,13 @@ local options = {
 function PersonnalMenu()
     ped = GetPlayerPed(-1);
     ClearMenu()
-    Menu.addButton("Animations", "animsMenu", nil)
-    Menu.addButton("Telephone", "phoneMenu", nil)
-    Menu.addButton("Inventaire", "inventoryMenu", nil)
-    Menu.addButton("Gestion des accessoires", "accessoriesMenu", nil)
-    Menu.addButton("Carte d'identité", "showCardMenu", nil)
+    Menu.addButton("Animaciones", "animsMenu", nil)
+    Menu.addButton("Telefono", "phoneMenu", nil)
+    Menu.addButton("Inventario", "inventoryMenu", nil)
+    Menu.addButton("Gestion de accesorios", "accessoriesMenu", nil)
+    Menu.addButton("Carta de identidad", "showCardMenu", nil)
     --Menu.addButton("Montrer sa carte d'identité (Prochainement)", "myCardMenu", nil)
-    Menu.addButton("Donner de l'argent", "moneyGive", nil)
+    Menu.addButton("Dar dinero", "moneyGive", nil)
 end
 
 ------------------------------------------------------------------------------------------------------------------------
@@ -87,7 +87,7 @@ function messagesRight(msg)
     SetTextColour(255, 255, 255, 255)
     SetTextCentre(0)
     SetTextEntry("STRING")
-    AddTextComponentString("Nouveau Message")
+    AddTextComponentString("Nuevo mensaje")
     DrawRect(0.11,0.25,0.2,0.04,0,0,0,150)
     DrawText(0.11 - 0.2/2 + 0.03, 0.25 - 0.04/2 + 0.0028)
 
@@ -120,13 +120,13 @@ end)
 function phoneMenu()
     options.menu_subtitle = "Telephone"
     ClearMenu()
-    Menu.addButton("Ajouter un numero", "newNumero", nil )
-    Menu.addButton("Repertoire", "repertoryMenu", nil )
-    Menu.addButton("Messages reçus", "messageryMenu", nil )
-    Menu.addButton("Urgence 911", "callPolice", nil )
-    Menu.addButton("Appeler un taxi", "callTaxi", nil )
-    Menu.addButton("Prendre une photo", "takePhoto", nil )
-    Menu.addButton("Retour", "PersonnalMenu", nil )
+    Menu.addButton("Añadir un numero", "newNumero", nil )
+    Menu.addButton("Agenda", "repertoryMenu", nil )
+    Menu.addButton("Mensajes recibidos", "messageryMenu", nil )
+    Menu.addButton("Urgencias 911", "callPolice", nil )
+    Menu.addButton("Llamar un taxi", "callTaxi", nil )
+    Menu.addButton("Hacer una foto", "takePhoto", nil )
+    Menu.addButton("Volver", "PersonnalMenu", nil )
 end
 
 function showCardMenu()
@@ -148,13 +148,13 @@ function newNumero()
 end
 
 function repertoryMenu()
-    options.menu_subtitle = "Repertoire"
+    options.menu_subtitle = "Agenda"
     ClearMenu()
     -- Menu.addButton("Appeler la police", "callPolice")
     for ind, value in pairs(NUMBERS_LIST) do
         Menu.addButton(value.name, "repertoryContact", value.identifier)
     end
-    Menu.addButton("Retour", "phoneMenu", nil )
+    Menu.addButton("Volver", "phoneMenu", nil )
 end
 
 
@@ -172,11 +172,11 @@ end
 
 
 function repertoryContact(contact)
-    options.menu_subtitle = "Repertoire"
+    options.menu_subtitle = "Agenda"
     ClearMenu()
-    Menu.addButton("Afficher le numéro", "checkContact", contact )
-    Menu.addButton("Envoyer un message", "writeMsg", contact )
-    Menu.addButton("Retour", "phoneMenu", nil )
+    Menu.addButton("Añadir un numero", "checkContact", contact )
+    Menu.addButton("Enviar un mensajee", "writeMsg", contact )
+    Menu.addButton("Volver", "phoneMenu", nil )
 
 end
 
@@ -211,17 +211,17 @@ AddEventHandler('pm:signalNotif',
 )
 
 function messageryMenu()
-    options.menu_subtitle = "Messagerie"
+    options.menu_subtitle = "Mensajeria"
     ClearMenu()
     for ind, value in pairs(OLDS_MSG) do
         local n = ""
         if value.has_read == 0 then
-            n = " - ~r~Non lu"
-            notifs("~o~ Vous avez des nouveaux message non lus !")
+            n = " - ~r~No leido"
+            notifs("~o~ Tienes mensajes sin leer !")
         end
         Menu.addButton(value.name .. " " .. n, "readOldMsg", {msg = value.msg, name = value.name, date= value.date, has_read = value.has_read, receiver_id = value.receiver_id})
     end
-    Menu.addButton("Retour", "phoneMenu", nil )
+    Menu.addButton("Volver", "phoneMenu", nil )
 end
 
 function readOldMsg(msg)
@@ -259,50 +259,50 @@ Citizen.CreateThread(function()
     end
 end)
 
--- Menu des animations
+-- Menu des Animaciones
 function animsMenu()
-    options.menu_subtitle = "Animations"
+    options.menu_subtitle = "Animaciones"
     ClearMenu()
-    Menu.addButton("Lever les bras", "animsAction", { lib = "ped", anim = "handsup" })
-    Menu.addButton("Saluer", "animsSalute", nil)
-    Menu.addButton("Humeur", "animsHumor", nil)
-    Menu.addButton("Sportives", "animsSportives",nil)
-    Menu.addButton("Festives", "animsFestives",nil)
-    Menu.addButton("Autres", "animsOthers", nil)
+    Menu.addButton("Arriba las manos", "animsAction", { lib = "ped", anim = "handsup" })
+    Menu.addButton("Saludar", "animsSalute", nil)
+    Menu.addButton("Humor", "animsHumor", nil)
+    Menu.addButton("Deportivos", "animsSportives",nil)
+    Menu.addButton("Festivos", "animsFestives",nil)
+    Menu.addButton("Otros", "animsOthers", nil)
     --Menu.addButton("Placer obj test", "animsWithModelsSpawn", {object = "prop_roadcone02c"})
-    Menu.addButton("Retour","PersonnalMenu",nil)
+    Menu.addButton("Volver","PersonnalMenu",nil)
 end
 
 function animsSportives()
-    options.menu_subtitle = "Animations  Sportives"
+    options.menu_subtitle = "Animaciones  Deportivos"
     ClearMenu()
     Menu.addButton("Faire du Yoga", "animsActionScenario", { anim = "WORLD_HUMAN_YOGA" })
     Menu.addButton("Jogging", "animsActionScenario", { anim = "WORLD_HUMAN_JOG_STANDING" })
     Menu.addButton("Faire des pompes", "animsActionScenario", { anim = "WORLD_HUMAN_PUSH_UPS" })
-    Menu.addButton("Retour","animsMenu",nil)
+    Menu.addButton("Volver","animsMenu",nil)
 end
 
 function animsFestives()
-    options.menu_subtitle = "Animations  Festives"
+    options.menu_subtitle = "Animaciones  Festivas"
     ClearMenu()
     Menu.addButton("Boire une biere", "animsActionScenario", { anim = "WORLD_HUMAN_DRINKING" })
     Menu.addButton("Pres du feu", "animsActionScenario", { anim = "WORLD_HUMAN_STAND_FIRE" })
     Menu.addButton("Jouer de la musique", "animsActionScenario", {anim = "WORLD_HUMAN_MUSICIAN" })
-    Menu.addButton("Retour","animsMenu",nil)
+    Menu.addButton("Volver","animsMenu",nil)
 end
 
 function animsSalute()
-    options.menu_subtitle = "Animations  Saluer"
+    options.menu_subtitle = "Animaciones  Saludo"
     ClearMenu()
     Menu.addButton("Serrer la main", "animsAction", { lib = "mp_common", anim = "givetake1_a" })
     Menu.addButton("Dire bonjour", "animsAction", { lib = "gestures@m@standing@casual", anim = "gesture_hello" })
     Menu.addButton("Tappes moi en 5", "animsAction", { lib = "mp_ped_interaction", anim = "highfive_guy_a" })
     Menu.addButton("Salut militaire", "animsAction", { lib = "mp_player_int_uppersalute", anim = "mp_player_int_salute" })
-    Menu.addButton("Retour","animsMenu",nil)
+    Menu.addButton("Volver","animsMenu",nil)
 end
 
 function animsHumor()
-    options.menu_subtitle = "Animations  Humeur"
+    options.menu_subtitle = "Animaciones  Humor"
     ClearMenu()
     Menu.addButton("Feliciter", "animsActionScenario", {anim = "WORLD_HUMAN_CHEERING" })
     Menu.addButton("Branleur", "animsAction", { lib = "mp_player_int_upperwank", anim = "mp_player_int_wank_01" })
@@ -314,11 +314,11 @@ function animsHumor()
     Menu.addButton("Balle dans la tete", "animsAction", { lib = "mp_suicide", anim = "pistol" })
     Menu.addButton("Super", "animsAction", { lib = "mp_action", anim = "thanks_male_06" })
     Menu.addButton("Enlacer", "animsAction", { lib = "mp_ped_interaction", anim = "kisses_guy_a" })
-    Menu.addButton("Retour","animsMenu",nil)
+    Menu.addButton("Volver","animsMenu",nil)
 end
 
 function animsOthers()
-    options.menu_subtitle = "Animations  Autres"
+    options.menu_subtitle = "Animaciones  Otros"
     ClearMenu()
     Menu.addButton("Crocheter", "animsActionScenario", { anim = "WORLD_HUMAN_WELDING" })
     Menu.addButton("Prendre des notes", "animsActionScenario", { anim = "WORLD_HUMAN_CLIPBOARD" })
@@ -327,7 +327,7 @@ function animsOthers()
     -- Menu.addButton("Reparer le moteur", "animsAction", { lib = "amb@world_human_vehicle_mechanic@male@idle_a", anim = "WORLD_HUMAN_VEHICLE_MECHANIC" })
     Menu.addButton("Se gratter les bijoux de famille", "animsAction", { lib = "mp_player_int_uppergrab_crotch", anim = "mp_player_int_grab_crotch" })
     Menu.addButton("Rock and Roll", "animsAction", { lib = "mp_player_int_upperrock", anim = "mp_player_int_rock" })
-    Menu.addButton("Retour","animsMenu",nil)
+    Menu.addButton("Volver","animsMenu",nil)
 
 end
 
@@ -453,16 +453,16 @@ function inventoryMenu()
             Menu.addButton(tostring(value.quantity) .. " " ..tostring(value.libelle), "inventoryItemMenu", ind)
         end
     end
-    Menu.addButton("Retour", "PersonnalMenu", ind)
+    Menu.addButton("Volver", "PersonnalMenu", ind)
 end
 
 function inventoryItemMenu(itemId)
     ClearMenu()
     options.menu_subtitle = "Details "
-    Menu.addButton("Donner", "inventoryGive", itemId)
-    Menu.addButton("Consommer", "eatvdk", { itemId, 1 })
-    Menu.addButton("Supprimer", "inventoryDelete", { itemId, 1 })
-    Menu.addButton("Retour","inventoryMenu", nil)
+    Menu.addButton("Consumir", "eatvdk", { itemId, 1 })
+    Menu.addButton("Dar", "inventoryGive", itemId)
+    Menu.addButton("Tirar", "inventoryDelete", { itemId, 1 })
+    Menu.addButton("Volver","inventoryMenu", nil)
 end
 
 function moneyGive()
@@ -566,12 +566,12 @@ local itemId = tonumber(arg[1])
 local qty = arg[2]
 local item = ITEMS[itemId]
 
-if (itemId == 30 or itemId == 31 or itemId == 34) then
+if (itemId == 30 or itemId == 31 or itemId == 34 or itemId == 40 or itemId == 41) then
 item.quantity = item.quantity - qty
 TriggerServerEvent("gabs:eatvdkitem", item.quantity, itemId)
-drawNotification("En train de ~y~consommer")
+drawNotification("Consumiendo...")
 else
-drawNotification("~r~Les objets ne se mangent pas !")
+drawNotification("~r~Los objetos no pueden comerse !")
 end
 inventoryMenu()
 end
@@ -665,11 +665,11 @@ wearingMask = true
 function accessoriesMenu()
 options.menu_subtitle = "Accessoires"
 ClearMenu()
-Menu.addButton("Porter/Retirer son chapeau", "accessoriesWearHatChecker")
-Menu.addButton("Porter/Retirer ses lunettes", "accessoriesWearGlassesChecker")
-Menu.addButton("Porter/Retirer son accessoire (oreilles)", "accessoriesWearPercingChecker")
-Menu.addButton("Porter/Retirer son masque", "accessoriesWearMaskChecker")
-Menu.addButton("Retour","PersonnalMenu",nil)
+Menu.addButton("Poner/Quitar son chapeau", "accessoriesWearHatChecker")
+Menu.addButton("Poner/Quitar ses lunettes", "accessoriesWearGlassesChecker")
+Menu.addButton("Poner/Quitar son accessoire (oreilles)", "accessoriesWearPercingChecker")
+Menu.addButton("Poner/Quitar son masque", "accessoriesWearMaskChecker")
+Menu.addButton("Volver","PersonnalMenu",nil)
 end
 
 RegisterNetEvent("pm:accessoriesWearHat")
