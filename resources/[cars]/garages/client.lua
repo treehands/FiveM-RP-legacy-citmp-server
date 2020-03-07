@@ -29,9 +29,9 @@ function MenuGarage()
     ped = GetPlayerPed(-1);
     MenuTitle = "Garage"
     ClearMenu()
-    Menu.addButton("Rentrer le véhicule","RentrerVehicule",nil)
-    Menu.addButton("Sortir un véhicule","ListeVehicule",nil)
-    Menu.addButton("Fermer","CloseMenu",nil) 
+    Menu.addButton("Guardar el vehiculo","RentrerVehicule",nil)
+    Menu.addButton("Sacar un vehiculo","ListeVehicule",nil)
+    Menu.addButton("Cerrar","CloseMenu",nil) 
 end
 
 function RentrerVehicule()
@@ -41,20 +41,20 @@ end
 
 function ListeVehicule()
     ped = GetPlayerPed(-1);
-    MenuTitle = "Vehicules"
+    MenuTitle = "Vehiculos"
     ClearMenu()
     for ind, value in pairs(VEHICLES) do
             Menu.addButton(tostring(value.vehicle_name) .. " : " .. tostring(value.vehicle_state), "OptionVehicle", value.id)
     end    
-    Menu.addButton("Retour","MenuGarage",nil)
+    Menu.addButton("Guardar","MenuGarage",nil)
 end
 
 function OptionVehicle(vehID)
 	local vehID = vehID
-    MenuTitle = "Options"
+    MenuTitle = "Opciones"
     ClearMenu()
-    Menu.addButton("Sortir", "SortirVehicule", vehID)
-    Menu.addButton("Retour", "ListeVehicule", nil)
+    Menu.addButton("Sacar", "SortirVehicule", vehID)
+    Menu.addButton("Guardar", "ListeVehicule", nil)
 end
 
 function SortirVehicule(vehID)
@@ -106,7 +106,7 @@ Citizen.CreateThread(function()
 		for _, garage in pairs(garages) do
 			DrawMarker(1, garage.x, garage.y, garage.z, 0, 0, 0, 0, 0, 0, 3.001, 3.0001, 0.5001, 0, 155, 255, 200, 0, 0, 0, 0)
 			if GetDistanceBetweenCoords(garage.x, garage.y, garage.z, GetEntityCoords(LocalPed())) < 1.5 then
-				drawTxt('~g~E~s~ pour ouvrir le menu',0,1,0.5,0.8,0.6,255,255,255,255)
+				drawTxt('~g~E~s~ para abrir el menu',0,1,0.5,0.8,0.6,255,255,255,255)
 				if IsControlJustPressed(1, 86) then
 					garageSelected.x = garage.x
 					garageSelected.y = garage.y
@@ -164,7 +164,7 @@ Citizen.CreateThread(function()
 		Wait(0)
 		DrawMarker(1,vente_location[1],vente_location[2],vente_location[3],0,0,0,0,0,0,3.001,3.0001,0.5001,0,155,255,200,0,0,0,0)
 		if GetDistanceBetweenCoords(vente_location[1],vente_location[2],vente_location[3],GetEntityCoords(LocalPed())) < 5 and IsPedInAnyVehicle(LocalPed(), true) == false then
-			drawTxt('Appuyez ~g~E~s~ pour détruire le véhicule',0,1,0.5,0.8,0.6,255,255,255,255)
+			drawTxt('Presiona ~g~E~s~ para destruir el vehiculo',0,1,0.5,0.8,0.6,255,255,255,255)
 			if IsControlJustPressed(1, 86) then
 				TriggerServerEvent('ply_garages:CheckForSelVeh',source)
 			end
@@ -197,10 +197,10 @@ AddEventHandler('ply_garages:SpawnVehicle', function(vehicle, plate, state, prim
 		Citizen.Wait(3000)
 		local caisseo = GetClosestVehicle(garageSelected.x, garageSelected.y, garageSelected.z, 3.000, 0, 70)
 		if DoesEntityExist(caisseo) then
-			drawNotification("La zone est encombrée") 
+			drawNotification("La zona esta ocupada") 
 		else
 			if state == "Sortit" then
-				drawNotification("Ce véhicule n'est pas dans le garage")
+				drawNotification("Este vehiculo no esta en el garage")
 			else
 				local mods = {}
 				for i = 0,24 do
@@ -223,7 +223,7 @@ AddEventHandler('ply_garages:SpawnVehicle', function(vehicle, plate, state, prim
 				SetVehicleColours(veh, primarycolor, secondarycolor)
 				SetVehicleExtraColours(veh, pearlescentcolor, wheelcolor)
 				SetEntityInvincible(veh, false) 
-				drawNotification("Véhicule sorti")				
+				drawNotification("Vehiculo sacado.")				
 				TriggerServerEvent('ply_garages:SetVehOut', vehicle, plate)
    				TriggerServerEvent("ply_garages:CheckGarageForVeh")
 			end
@@ -241,15 +241,15 @@ AddEventHandler('ply_garages:StoreVehicle', function(vehicle, plate)
 		local platecaissei = GetVehicleNumberPlateText(caissei)
 		if DoesEntityExist(caissei) then	
 			if plate ~= platecaissei then					
-				drawNotification("Ce n'est pas ton véhicule")
+				drawNotification("Este vehiculo no es tuyo.")
 			else
 				Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(caissei))
-				drawNotification("Véhicule rentré")
+				drawNotification("Vehiculo guardado")
 				TriggerServerEvent('ply_garages:SetVehIn', plate)
 				TriggerServerEvent("ply_garages:CheckGarageForVeh")
 			end
 		else
-			drawNotification("Aucun véhicule présent")
+			drawNotification("Nigun vehiculo presente.")
 		end   
 	end)
 end)
@@ -264,14 +264,14 @@ AddEventHandler('ply_garages:SelVehicle', function(vehicle, plate)
 		local platecaissei = GetVehicleNumberPlateText(caissei)
 		if DoesEntityExist(caissei) then
 			if plate ~= platecaissei then
-				drawNotification("Ce n'est pas ton véhicule")
+				drawNotification("Este vehiculo no es tuyo.")
 			else
 				Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(caissei))
 				TriggerServerEvent('ply_garages:SelVeh', plate)
 				TriggerServerEvent("ply_garages:CheckGarageForVeh")
 			end
 		else
-			drawNotification("Aucun véhicule présent")
+			drawNotification("Nigun vehiculo presente.")
 		end
 	end)
 end)
