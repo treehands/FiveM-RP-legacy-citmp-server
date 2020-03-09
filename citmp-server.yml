@@ -14,6 +14,7 @@ AutoStartResources:
     - hardcap # prevents the game from breaking
     - essentialmode
     - es_freeroam
+    - npcs
     - nameOfPlayers
     - banking
     - FBI
@@ -39,6 +40,8 @@ AutoStartResources:
     - food-shop
     - paramedics
     - vehshop
+    - airshop
+    - airshop_reg
     - prefecture
     - clothing_shop
     - personnal_menu
@@ -54,7 +57,7 @@ AutoStartResources:
     - teleporter
     - gspr
     - es_admin
-    - blanchiement
+    #- blanchiement
     - es_afterStart
 
 # do change

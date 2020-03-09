@@ -26,18 +26,18 @@ local weashop = {
 		},
 		["Melee"] = {
 			title = "Melee",
-			name = "Armes blanches",
+			name = "Armas Blancas",
 			buttons = {
 				{title = "Cuchillo", name = "Knife", costs = 850, description = {}, model = "WEAPON_KNIFE"},
 				{title = "Machete", name = "Machette", costs = 950, description = {}, model = "WEAPON_MACHETE"},
-				
 				{title = "Linterna", name = "Flashlight", costs = 400, description = {}, model = "WEAPON_FLASHLIGHT"},
+				{title = "Bate de Beisbol", name = "Bate", costs = 400, description = {}, model = "WEAPON_BAT"},
 			}
 			
 		},
 		["Autres"] = {
 			title = "Autres",
-			name = "Autres",
+			name = "Otras",
 			buttons = {
 				{title = "Pistola", name = "Pistol", costs = 3000, description = {}, model = "WEAPON_PISTOL"},
 				{title = "Pistola de combate", name = "CombatPistol", costs = 4000, description = {}, model = "WEAPON_COMBATPISTOL"},
@@ -46,6 +46,11 @@ local weashop = {
 				{title = "Coktel Molotov", name = "Molotov", costs = 6500, description = {}, model = "WEAPON_MOLOTOV"},
 				{title = "Fusil Gusenberg", name = "Gusenberg", costs = 29500, description = {}, model = "WEAPON_GUSENBERG"},
 				{title = "Lanzador de cohetes", name = "Artifice", costs = 10000, description = {}, model = "WEAPON_FIREWORK"},
+				{title = "Assault Rifle", name = "Assault", costs = 29500, description = {}, model = "WEAPON_ASSAULTRIFLE"},
+				{title = "Carbine Rifle", name = "Carbine", costs = 29500, description = {}, model = "WEAPON_CARBINERIFLE"},
+				{title = "Sniper Rifle", name = "Sniper1", costs = 30000, description = {}, model = "WEAPON_SNIPERRIFLE"},
+				{title = "Heavy Sniper", name = "Sniper2", costs = 30000, description = {}, model = "WEAPON_HEAVYSNIPER"},
+
 
 			}
 		}

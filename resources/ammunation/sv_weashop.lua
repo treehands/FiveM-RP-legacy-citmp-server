@@ -2,8 +2,8 @@
 require "resources/essentialmode/lib/MySQL"
 MySQL:open("127.0.0.1", "gta5_gamemode_essential", "root", "")
 
-local max_number_weapons = 6 --maximum number of weapons that the player can buy. Weapons given at spawn doesn't count.
-local cost_ratio = 100 --Ratio for withdrawing the weapons. This is price/cost_ratio = cost.
+local max_number_weapons = 9 --maximum number of weapons that the player can buy. Weapons given at spawn doesn't count.
+local cost_ratio = 10 --Ratio for withdrawing the weapons. This is price/cost_ratio = cost.
 
 RegisterServerEvent('CheckMoneyForWea')
 AddEventHandler('CheckMoneyForWea', function(weapon,price)
@@ -27,14 +27,14 @@ AddEventHandler('CheckMoneyForWea', function(weapon,price)
 				{['@username'] = player, ['@weapon'] = weapon, ['@cost'] = (price)/cost_ratio})
 				-- Trigger some client stuff
 				TriggerClientEvent('FinishMoneyCheckForWea',source)
-				TriggerClientEvent("es_freeroam:notify", source, "CHAR_AMMUNATION", 1, "Armería Los Santos", false, "Achat effectué\n")
+				TriggerClientEvent("es_freeroam:notify", source, "CHAR_AMMUNATION", 1, "Armería Los Santos", false, "Compra completada\n")
 			else
 				TriggerClientEvent('ToManyWeapons',source)
-				TriggerClientEvent("es_freeroam:notify", source, "CHAR_AMMUNATION", 1, "Armería Los Santos", false, "Inventaire complet! (max: "..max_number_weapons..")\n")
+				TriggerClientEvent("es_freeroam:notify", source, "CHAR_AMMUNATION", 1, "Armería Los Santos", false, "Inventario completo! (max: "..max_number_weapons..")\n")
 			end
 		else
 			-- Inform the player that he needs more money
-			TriggerClientEvent("es_freeroam:notify", source, "CHAR_AMMUNATION", 1, "Armería Los Santos", false, "Tu n'as pas assez d'argent...\n")
+			TriggerClientEvent("es_freeroam:notify", source, "CHAR_AMMUNATION", 1, "Armería Los Santos", false, "No tienes suficiente dinero...\n")
 		end
 	end)
 end)
