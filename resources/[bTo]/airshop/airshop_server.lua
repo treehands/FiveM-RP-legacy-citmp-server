@@ -1,8 +1,8 @@
 require "resources/essentialmode/lib/MySQL"
 MySQL:open('127.0.0.1', 'gta5_gamemode_essential', 'root', '')
 
-RegisterServerEvent('CheckMoneyForVeh')
-AddEventHandler('CheckMoneyForVeh', function(vehicle, price)
+RegisterServerEvent('CheckMoneyForFly')
+AddEventHandler('CheckMoneyForFly', function(vehicle, price)
 	TriggerEvent('es:getPlayerFromId', source, function(user)
 
 	if (tonumber(user.money) >= tonumber(price)) then
@@ -14,7 +14,7 @@ AddEventHandler('CheckMoneyForVeh', function(vehicle, price)
       MySQL:executeQuery("UPDATE users SET personalvehicle='@vehicle' WHERE identifier = '@username'",
       {['@username'] = player, ['@vehicle'] = vehicle})
       -- Trigger some client stuff
-      TriggerClientEvent('FinishMoneyCheckForVeh',source)
+      TriggerClientEvent('FinishMoneyCheckForFly',source)
       TriggerClientEvent("es_freeroam:notify", source, "CHAR_CARSITE", 1, "Concesionario", false, "Nueva aeronave comprada!\nVuela con cuidado...")
     else
       -- Inform the player that he needs more money

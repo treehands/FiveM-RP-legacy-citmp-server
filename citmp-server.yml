@@ -42,6 +42,7 @@ AutoStartResources:
     - vehshop
     - airshop
     - airshop_reg
+    - hangar
     - prefecture
     - clothing_shop
     - personnal_menu

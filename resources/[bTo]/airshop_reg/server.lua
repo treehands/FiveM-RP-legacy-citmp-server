@@ -7,10 +7,10 @@ MySQL:open("localhost", "gta5_gamemode_essential", "root", "")
 
 --[[Register]]--
 
-RegisterServerEvent("ply_prefecture:GetLicences")
-RegisterServerEvent("ply_prefecture:CheckForVeh")
-RegisterServerEvent("ply_prefecture:CheckForLicences")
-RegisterServerEvent("ply_prefecture:SetLicenceForVeh")
+RegisterServerEvent("ply_aeroclub:GetLicences")
+RegisterServerEvent("ply_aeroclub:CheckForVeh")
+RegisterServerEvent("ply_aeroclub:CheckForLicences")
+RegisterServerEvent("ply_aeroclub:SetLicenceForVeh")
 
 
 
@@ -22,7 +22,7 @@ licences = {}
 
 --[[Events]]--
 
-AddEventHandler("ply_prefecture:GetLicences", function()
+AddEventHandler("ply_aeroclub:GetLicences", function()
     licences = {}
     TriggerEvent('es:getPlayerFromId', source, function(user)
         local player = user.identifier
@@ -35,10 +35,10 @@ AddEventHandler("ply_prefecture:GetLicences", function()
             end
         end
     end)
-    TriggerClientEvent("ply_prefecture:GetLicences", source, licences)
+    TriggerClientEvent("ply_aeroclub:GetLicences", source, licences)
 end)
 
-AddEventHandler('ply_prefecture:CheckForLicences', function(licID)
+AddEventHandler('ply_aeroclub:CheckForLicences', function(licID)
   TriggerEvent('es:getPlayerFromId', source, function(user)
     licID = licID
     local player = user.identifier
@@ -56,7 +56,7 @@ AddEventHandler('ply_prefecture:CheckForLicences', function(licID)
     end    
     print(licence_id)
     if (licence_id > 0) then      
-        TriggerClientEvent("es_freeroam:notify", source, "CHAR_EPSILON", 1, "Préfecture", false, "Ya tienes este permiso")
+        TriggerClientEvent("es_freeroam:notify", source, "CHAR_EPSILON", 1, "Aeroclub", false, "Ya tienes este permiso")
     else
       local executed_query = MySQL:executeQuery("SELECT * FROM licences WHERE id = '@licID'",
       {['@licID'] = licID})
@@ -70,12 +70,12 @@ AddEventHandler('ply_prefecture:CheckForLicences', function(licID)
       local executed_query = MySQL:executeQuery("INSERT INTO user_licence (`identifier`, `licence_id`) VALUES ('@identifier', '@licID')",
       {['@identifier'] = player, ['@licID'] = licID})        
       user:removeMoney((price))    
-      TriggerClientEvent("es_freeroam:notify", source, "CHAR_EPSILON", 1, "Préfecture", false, "Permiso comprado")
+      TriggerClientEvent("es_freeroam:notify", source, "CHAR_EPSILON", 1, "Aeroclub", false, "Permiso comprado")
     end
   end)
 end)
 
-AddEventHandler('ply_prefecture:CheckForVeh', function()
+AddEventHandler('ply_aeroclub:CheckForVeh', function()
   TriggerEvent('es:getPlayerFromId', source, function(user)
     local player = user.identifier
     local executed_query = MySQL:executeQuery("SELECT * FROM users WHERE personalvehicle IS NOT NULL AND identifier = '@username'",
@@ -87,7 +87,7 @@ AddEventHandler('ply_prefecture:CheckForVeh', function()
       			for k,v in ipairs(result)do
       			  personalvehicle = v.personalvehicle
       			end
-      			TriggerClientEvent('ply_prefecture:CheckForRealVeh', source, personalvehicle)
+      			TriggerClientEvent('ply_aeroclub:CheckForRealVeh', source, personalvehicle)
       		end
       	end
     end
@@ -95,7 +95,7 @@ AddEventHandler('ply_prefecture:CheckForVeh', function()
   end)
 end)
 
-AddEventHandler('ply_prefecture:SetLicenceForVeh', function(name, vehicle, plate, primarycolor, secondarycolor, pearlescentcolor, wheelcolor)
+AddEventHandler('ply_aeroclub:SetLicenceForVeh', function(name, vehicle, plate, primarycolor, secondarycolor, pearlescentcolor, wheelcolor)
   TriggerEvent('es:getPlayerFromId', source, function(user)
 
     local player = user.identifier
@@ -112,6 +112,6 @@ AddEventHandler('ply_prefecture:SetLicenceForVeh', function(name, vehicle, plate
     local state = "vide"
     local executed_query = MySQL:executeQuery("UPDATE users SET personalvehicle='@state' WHERE identifier = '@username'",
     {['@username'] = player, ['@state'] = state})
-    TriggerClientEvent("es_freeroam:notify", source, "CHAR_EPSILON", 1, "Préfecture", false, "Vehiculo registrado")
+    TriggerClientEvent("es_freeroam:notify", source, "CHAR_EPSILON", 1, "Aeroclub", false, "Vehiculo registrado")
   end)
 end)

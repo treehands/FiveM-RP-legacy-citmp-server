@@ -21,7 +21,7 @@ local airshop = {
 			name = "main",
 			buttons = {
 				{name = "Aviones", description = ""},
-				{name = "Helicopteros", description = ""},
+				--{name = "Helicopteros", description = ""},
 			}
 		},
 		["Aviones"] = {
@@ -41,10 +41,10 @@ local airshop = {
 			title = "Helicopteros",
 			name = "Helicopteros",
 			buttons = {
-				{name = "Annihilator", costs = 600000, description = {}, model = "annihilator"},
-				{name = "Frogger", costs = 600000, description = {}, model = "frogger"},
-				{name = "Valkyrie", costs = 600000, description = {}, model = "valkyrie"},
-				{name = "Cargobob", costs = 600000, description = {}, model = "cargobob2"},
+				--{name = "Annihilator", costs = 600000, description = {}, model = "annihilator"},
+				--{name = "Frogger", costs = 600000, description = {}, model = "frogger"},
+				--{name = "Valkyrie", costs = 600000, description = {}, model = "valkyrie"},
+				--{name = "Cargobob", costs = 600000, description = {}, model = "cargobob2"},
 		
 			}
 		},
@@ -432,12 +432,12 @@ function ButtonSelected(button)
 			OpenMenu('Helicopteros')
 		end
 	elseif this == "Aviones" or this == "Helicopteros" then
-		TriggerServerEvent('CheckMoneyForVeh',button.model,button.costs)
+		TriggerServerEvent('CheckMoneyForFly',button.model,button.costs)
 	end
 end
 
-RegisterNetEvent('FinishMoneyCheckForVeh')
-AddEventHandler('FinishMoneyCheckForVeh', function()
+RegisterNetEvent('FinishMoneyCheckForFly')
+AddEventHandler('FinishMoneyCheckForFly', function()
 	boughtcar = true
 	CloseCreator()
 end)
