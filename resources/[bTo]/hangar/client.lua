@@ -15,10 +15,9 @@ local inrangeofgarage = false
 local currentlocation = nil
 
 local hangares = {
-	{name="Hangar", colour=2, id=90, x=215.124, y=-791.377, z=29.646},
-  	{name="Hangar", colour=2, id=90, x=-334.685, y=289.773, z=84.705},
-  	{name="Hangar", colour=2, id=90, x=-55.272, y=-1838.71, z=25.442},
-  	{name="Hangar", colour=2, id=90, x=126.434, y=6610.04, z=30.750},
+	{name="Hangar", colour=2, id=90, x=-999.92, y=-2995.49, z=13.94},
+  	{name="Hangar", colour=2, id=90, x=1740.29, y=3268.47, z=41.21},
+  	{name="Hangar", colour=2, id=90, x=2133.32, y=4808.77, z=41.19},
 }
 
 hangarSelected = { {x=nil, y=nil, z=nil}, }
@@ -195,7 +194,7 @@ AddEventHandler('ply_hangares:SpawnVehicle', function(vehicle, plate, state, pri
 	local wheelcolor = tonumber(wheelcolor)
 	Citizen.CreateThread(function()
 		Citizen.Wait(3000)
-		local zonao = GetClosestVehicle(hangarSelected.x, hangarSelected.y, hangarSelected.z, 3.000, 0, 16384)
+		local zonao = GetClosestVehicle(hangarSelected.x, hangarSelected.y, hangarSelected.z, 5.000, 0, 16384)
 		if DoesEntityExist(zonao) then
 			drawNotification("La zona esta ocupada") 
 		else
@@ -236,7 +235,7 @@ AddEventHandler('ply_hangares:StoreVehicle', function(vehicle, plate)
 	local plate = plate
 	Citizen.CreateThread(function()
 		Citizen.Wait(3000)
-		local zonai = GetClosestVehicle(hangarSelected.x, hangarSelected.y, hangarSelected.z, 3.000, 0, 16384)
+		local zonai = GetClosestVehicle(hangarSelected.x, hangarSelected.y, hangarSelected.z, 5.000, 0, 16384)
 		SetEntityAsMissionEntity(zonai, true, true)		
 		local platezonai = GetVehicleNumberPlateText(zonai)
 		if DoesEntityExist(zonai) then	
@@ -259,12 +258,12 @@ AddEventHandler('ply_hangares:SelVehicle', function(vehicle, plate)
 	local plate = plate
 	Citizen.CreateThread(function()		
 		Citizen.Wait(0)
-		local zonai = GetClosestVehicle(venta_location[1],venta_location[2],venta_location[3], 3.000, 0, 16384)
+		local zonai = GetClosestVehicle(venta_location[1],venta_location[2],venta_location[3], 5.000, 0, 16384)
 		SetEntityAsMissionEntity(zonai, true, true)
 		local platezonai = GetVehicleNumberPlateText(zonai)
 		if DoesEntityExist(zonai) then
 			if plate ~= platezonai then
-				drawNotification("Este vehiculo no es tuyo.")
+				drawNotification("Este avion no es tuyo.")
 			else
 				Citizen.InvokeNative(0xEA386986E786A54F, Citizen.PointerValueIntInitialized(zonai))
 				TriggerServerEvent('ply_hangares:SelVeh', plate)
