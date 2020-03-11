@@ -10,14 +10,14 @@ RegisterNetEvent('ply_hangares:SelVehicle')
 --[[Local/Global]]--
 
 VEHICLES = {}
-local venta_location = {-45.228, -1083.123, 25.816}
-local inrangeofgarage = false
+local venta_location = {-985.33, -2972.25, 12.94}
+local inrangeofhangar = false
 local currentlocation = nil
 
 local hangares = {
-	{name="Hangar", colour=2, id=90, x=-999.92, y=-2995.49, z=13.94},
-  	{name="Hangar", colour=2, id=90, x=1740.29, y=3268.47, z=41.21},
-  	{name="Hangar", colour=2, id=90, x=2133.32, y=4808.77, z=41.19},
+	{name="Hangar", colour=46, id=251, x=-999.92, y=-2995.49, z=12.94},
+  	{name="Hangar", colour=46, id=251, x=1740.29, y=3268.47, z=40.21},
+  	{name="Hangar", colour=46, id=251, x=2133.32, y=4808.77, z=40.19},
 }
 
 hangarSelected = { {x=nil, y=nil, z=nil}, }
@@ -77,7 +77,7 @@ function LocalPed()
 end
 
 function IsPlayerInRangeOfHangar()
-	return inrangeofgarage
+	return inrangeofhangar
 end
 
 function Chat(debugg)
@@ -104,7 +104,7 @@ Citizen.CreateThread(function()
 		Citizen.Wait(0)
 		for _, hangar in pairs(hangares) do
 			DrawMarker(1, hangar.x, hangar.y, hangar.z, 0, 0, 0, 0, 0, 0, 3.001, 3.0001, 0.5001, 0, 155, 255, 200, 0, 0, 0, 0)
-			if GetDistanceBetweenCoords(hangar.x, hangar.y, hangar.z, GetEntityCoords(LocalPed())) < 1.5 then
+			if GetDistanceBetweenCoords(hangar.x, hangar.y, hangar.z, GetEntityCoords(LocalPed())) < 3 then
 				drawTxt('~g~E~s~ para abrir el menu',0,1,0.5,0.8,0.6,255,255,255,255)
 				if IsControlJustPressed(1, 86) then
 					hangarSelected.x = hangar.x
@@ -124,7 +124,7 @@ Citizen.CreateThread(function()
 		local near = false
 		Citizen.Wait(0)
 		for _, hangar in pairs(hangares) do		
-			if (GetDistanceBetweenCoords(hangar.x, hangar.y, hangar.z, GetEntityCoords(LocalPed())) < 1.5 and near ~= true) then 
+			if (GetDistanceBetweenCoords(hangar.x, hangar.y, hangar.z, GetEntityCoords(LocalPed())) < 3 and near ~= true) then 
 				near = true							
 			end
 		end
@@ -152,7 +152,7 @@ Citizen.CreateThread(function()
 	pos = venta_location
 	local blip = AddBlipForCoord(pos[1],pos[2],pos[3])
 	SetBlipSprite(blip,207)
-	SetBlipColour(blip, 3)
+	SetBlipColour(blip, 46)
 	BeginTextCommandSetBlipName("STRING")
 	AddTextComponentString('Revente')
 	EndTextCommandSetBlipName(blip)
@@ -185,7 +185,7 @@ AddEventHandler("playerSpawned", function()
 end)
 
 AddEventHandler('ply_hangares:SpawnVehicle', function(vehicle, plate, state, primarycolor, secondarycolor, pearlescentcolor, wheelcolor)
-	local car = GetHashKey(vehicle)
+	local plane = GetHashKey(vehicle)
 	local plate = plate
 	local state = state
 	local primarycolor = tonumber(primarycolor)
@@ -202,14 +202,14 @@ AddEventHandler('ply_hangares:SpawnVehicle', function(vehicle, plate, state, pri
 				drawNotification("Este avion no esta en el hangar")
 			else
 				local mods = {}
-				for i = 0,24 do
+				for i = 0,32 do
 					mods[i] = GetVehicleMod(veh,i)
 				end
-				RequestModel(car)
-				while not HasModelLoaded(car) do
+				RequestModel(plane)
+				while not HasModelLoaded(plane) do
 				Citizen.Wait(0)
 				end
-				veh = CreateVehicle(car, hangarSelected.x, hangarSelected.y, hangarSelected.z, 0.0, true, false)
+				veh = CreateVehicle(plane, hangarSelected.x, hangarSelected.y, hangarSelected.z, 0.0, true, false)
 				for i,mod in pairs(mods) do
 					SetVehicleModKit(personalvehicle,0)
 					SetVehicleMod(personalvehicle,i,mod)
@@ -231,7 +231,7 @@ AddEventHandler('ply_hangares:SpawnVehicle', function(vehicle, plate, state, pri
 end)
 
 AddEventHandler('ply_hangares:StoreVehicle', function(vehicle, plate)
-	local car = GetHashKey(vehicle)	
+	local plane = GetHashKey(vehicle)	
 	local plate = plate
 	Citizen.CreateThread(function()
 		Citizen.Wait(3000)
@@ -254,7 +254,7 @@ AddEventHandler('ply_hangares:StoreVehicle', function(vehicle, plate)
 end)
 
 AddEventHandler('ply_hangares:SelVehicle', function(vehicle, plate)
-	local car = GetHashKey(vehicle)	
+	local plane = GetHashKey(vehicle)	
 	local plate = plate
 	Citizen.CreateThread(function()		
 		Citizen.Wait(0)

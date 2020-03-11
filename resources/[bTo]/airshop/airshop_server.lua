@@ -15,7 +15,7 @@ AddEventHandler('CheckMoneyForFly', function(vehicle, price)
       {['@username'] = player, ['@vehicle'] = vehicle})
       -- Trigger some client stuff
       TriggerClientEvent('FinishMoneyCheckForFly',source)
-      TriggerClientEvent("es_freeroam:notify", source, "CHAR_CARSITE", 1, "Concesionario", false, "Nueva aeronave comprada!\nVuela con cuidado...")
+      TriggerClientEvent("es_freeroam:notify", source, "CHAR_CARSITE", 1, "Concesionario", false, "Nueva aeronave comprada!\nNo olvides registrarlo.")
     else
       -- Inform the player that he needs more money
     TriggerClientEvent("es_freeroam:notify", source, "CHAR_CARSITE", 1, "Concesionario", false, "No tienes suficiente dinero...\n")
