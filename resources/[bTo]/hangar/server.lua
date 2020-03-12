@@ -29,7 +29,7 @@ AddEventHandler('ply_hangares:CheckForSpawnVeh', function(veh_id)
   TriggerEvent('es:getPlayerFromId', source, function(user)
     local veh_id = veh_id
     local player = user.identifier
-    local executed_query = MySQL:executeQuery("SELECT * FROM user_vehicle WHERE identifier = '@username' AND ID = '@ID'",{['@username'] = player, ['@ID'] = veh_id})
+    local executed_query = MySQL:executeQuery("SELECT * FROM user_plane WHERE identifier = '@username' AND ID = '@ID'",{['@username'] = player, ['@ID'] = veh_id})
     local result = MySQL:getResults(executed_query, {'vehicle_model', 'vehicle_plate', 'vehicle_state', 'vehicle_colorprimary', 'vehicle_colorsecondary', 'vehicle_pearlescentcolor', 'vehicle_wheelcolor' }, "identifier")
     if(result)then
       for k,v in ipairs(result)do
@@ -58,7 +58,7 @@ AddEventHandler('ply_hangares:CheckForVeh', function()
   TriggerEvent('es:getPlayerFromId', source, function(user)
     local state = "Sortit"
     local player = user.identifier
-    local executed_query = MySQL:executeQuery("SELECT * FROM user_vehicle WHERE identifier = '@username' AND vehicle_state ='@state'",{['@username'] = player, ['@vehicle'] = vehicle, ['@state'] = state})
+    local executed_query = MySQL:executeQuery("SELECT * FROM user_plane WHERE identifier = '@username' AND vehicle_state ='@state'",{['@username'] = player, ['@vehicle'] = vehicle, ['@state'] = state})
     local result = MySQL:getResults(executed_query, {'vehicle_model', 'vehicle_plate'}, "identifier")
     if(result)then
       for k,v in ipairs(result)do
@@ -79,7 +79,7 @@ AddEventHandler('ply_hangares:SetVehOut', function(vehicle, plate)
     local state = "Sortit"
     local plate = plate
 
-    local executed_query = MySQL:executeQuery("UPDATE user_vehicle SET vehicle_state='@state' WHERE identifier = '@username' AND vehicle_plate = '@plate' AND vehicle_model = '@vehicle'",
+    local executed_query = MySQL:executeQuery("UPDATE user_plane SET vehicle_state='@state' WHERE identifier = '@username' AND vehicle_plate = '@plate' AND vehicle_model = '@vehicle'",
       {['@username'] = player, ['@vehicle'] = vehicle, ['@state'] = state, ['@plate'] = plate})
   end)
 end)
@@ -89,7 +89,7 @@ AddEventHandler('ply_hangares:SetVehIn', function(plate)
     local player = user.identifier
     local plate = plate
     local state = "Rentré"
-    local executed_query = MySQL:executeQuery("UPDATE user_vehicle SET vehicle_state='@state' WHERE identifier = '@username' AND vehicle_plate = '@plate'",
+    local executed_query = MySQL:executeQuery("UPDATE user_plane SET vehicle_state='@state' WHERE identifier = '@username' AND vehicle_plate = '@plate'",
       {['@username'] = player, ['@plate'] = plate, ['@state'] = state})
   end)
 end)
@@ -100,7 +100,7 @@ AddEventHandler('ply_hangares:PutVehInGarages', function(vehicle)
     local player = user.identifier
     local state ="Rentré"
 
-    local executed_query = MySQL:executeQuery("SELECT * FROM user_vehicle WHERE identifier = '@username'",{['@username'] = player})
+    local executed_query = MySQL:executeQuery("SELECT * FROM user_plane WHERE identifier = '@username'",{['@username'] = player})
     local result = MySQL:getResults(executed_query, {'identifier'})
 
     if(result)then
@@ -112,7 +112,7 @@ AddEventHandler('ply_hangares:PutVehInGarages', function(vehicle)
 
     if joueur ~= nil then
 
-      local executed_query = MySQL:executeQuery("UPDATE user_vehicle SET `vehicle_state`='@state' WHERE identifier = '@username'",
+      local executed_query = MySQL:executeQuery("UPDATE user_plane SET `vehicle_state`='@state' WHERE identifier = '@username'",
       {['@username'] = player, ['@state'] = state})
 
     end
@@ -123,7 +123,7 @@ AddEventHandler('ply_hangares:CheckHangarForVeh', function()
   vehicles = {}
   TriggerEvent('es:getPlayerFromId', source, function(user)
     local player = user.identifier  
-    local executed_query = MySQL:executeQuery("SELECT * FROM user_vehicle WHERE identifier = '@username'",{['@username'] = player})
+    local executed_query = MySQL:executeQuery("SELECT * FROM user_plane WHERE identifier = '@username'",{['@username'] = player})
     local result = MySQL:getResults(executed_query, {'id','vehicle_model', 'vehicle_name', 'vehicle_state'}, "id")
     if (result) then
         for _, v in ipairs(result) do
@@ -145,7 +145,7 @@ AddEventHandler('ply_hangares:CheckForSelVeh', function()
   TriggerEvent('es:getPlayerFromId', source, function(user)
     local state = "Sortit"
     local player = user.identifier
-    local executed_query = MySQL:executeQuery("SELECT * FROM user_vehicle WHERE identifier = '@username' AND vehicle_state ='@state'",{['@username'] = player, ['@vehicle'] = vehicle, ['@state'] = state})
+    local executed_query = MySQL:executeQuery("SELECT * FROM user_plane WHERE identifier = '@username' AND vehicle_state ='@state'",{['@username'] = player, ['@vehicle'] = vehicle, ['@state'] = state})
     local result = MySQL:getResults(executed_query, {'vehicle_model', 'vehicle_plate'}, "identifier")
     if(result)then
       for k,v in ipairs(result)do
@@ -165,7 +165,7 @@ AddEventHandler('ply_hangares:SelVeh', function(plate)
     local player = user.identifier
     local plate = plate
 
-    local executed_query = MySQL:executeQuery("SELECT * FROM user_vehicle WHERE identifier = '@username' AND vehicle_plate ='@plate'",{['@username'] = player, ['@vehicle'] = vehicle, ['@plate'] = plate})
+    local executed_query = MySQL:executeQuery("SELECT * FROM user_plane WHERE identifier = '@username' AND vehicle_plate ='@plate'",{['@username'] = player, ['@vehicle'] = vehicle, ['@plate'] = plate})
     local result = MySQL:getResults(executed_query, {'vehicle_plate'}, "identifier")
     if(result)then
       for k,v in ipairs(result)do
@@ -174,7 +174,7 @@ AddEventHandler('ply_hangares:SelVeh', function(plate)
       user:addMoney((price))
       end
     end
-    local executed_query = MySQL:executeQuery("DELETE from user_vehicle WHERE identifier = '@username' AND vehicle_plate = '@plate'",
+    local executed_query = MySQL:executeQuery("DELETE from user_plane WHERE identifier = '@username' AND vehicle_plate = '@plate'",
       {['@username'] = player, ['@plate'] = plate})
     TriggerClientEvent("es_freeroam:notify", source, "CHAR_SIMEON", 1, "Simeon", false, "Véhicule détruit voici un peu d'argent!\n")
   end)
@@ -195,7 +195,7 @@ AddEventHandler('playerConnecting', function()
 	if (sum < 1) then
 		local old_state = "Sortit"
 		local state = "Rentré"
-		local executed_query = MySQL:executeQuery("UPDATE user_vehicle SET `vehicle_state`='@state' WHERE vehicle_state = '@old_state'",
+		local executed_query = MySQL:executeQuery("UPDATE user_plane SET `vehicle_state`='@state' WHERE vehicle_state = '@old_state'",
 		{['@old_state'] = old_state, ['@state'] = state})
 	end
 end)

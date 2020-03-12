@@ -95,7 +95,7 @@ AddEventHandler('ply_aeroclub:CheckForVeh', function()
   end)
 end)
 
-AddEventHandler('ply_aeroclub:SetLicenceForVeh', function(name, vehicle, plate, primarycolor, secondarycolor, pearlescentcolor, wheelcolor)
+AddEventHandler('ply_aeroclub:SetLicenceForVeh', function(name, flymodel, plate, primarycolor, secondarycolor, pearlescentcolor, wheelcolor)
   TriggerEvent('es:getPlayerFromId', source, function(user)
 
     local player = user.identifier
@@ -107,8 +107,8 @@ AddEventHandler('ply_aeroclub:SetLicenceForVeh', function(name, vehicle, plate, 
     local pearlescentcolor = pearlescentcolor
     local wheelcolor = wheelcolor
 
-    local executed_query = MySQL:executeQuery("INSERT INTO user_vehicle (`identifier`, `vehicle_name`, `vehicle_model`, `vehicle_plate`, `vehicle_state`, `vehicle_colorprimary`, `vehicle_colorsecondary`, `vehicle_pearlescentcolor`, `vehicle_wheelcolor`) VALUES ('@username', '@name', '@vehicle', '@plate', '@state', '@primarycolor', '@secondarycolor', '@pearlescentcolor', '@wheelcolor')",
-    {['@username'] = player, ['@name'] = name, ['@vehicle'] = vehicle, ['@plate'] = plate, ['@state'] = state, ['@primarycolor'] = primarycolor, ['@secondarycolor'] = secondarycolor, ['@pearlescentcolor'] = pearlescentcolor, ['@wheelcolor'] = wheelcolor})
+    local executed_query = MySQL:executeQuery("INSERT INTO user_plane (`identifier`, `vehicle_name`, `vehicle_model`, `vehicle_plate`, `vehicle_state`, `vehicle_colorprimary`, `vehicle_colorsecondary`, `vehicle_pearlescentcolor`, `vehicle_wheelcolor`) VALUES ('@username', '@name', '@vehicle', '@plate', '@state', '@primarycolor', '@secondarycolor', '@pearlescentcolor', '@wheelcolor')",
+    {['@username'] = player, ['@name'] = name, ['@vehicle'] = flymodel, ['@plate'] = plate, ['@state'] = state, ['@primarycolor'] = primarycolor, ['@secondarycolor'] = secondarycolor, ['@pearlescentcolor'] = pearlescentcolor, ['@wheelcolor'] = wheelcolor})
     local state = "vide"
     local executed_query = MySQL:executeQuery("UPDATE users SET personalvehicle='@state' WHERE identifier = '@username'",
     {['@username'] = player, ['@state'] = state})

@@ -5,7 +5,7 @@ local airshop = {
 	lastmenu = nil,
 	currentpos = nil,
 	selectedbutton = 0,
-	marker = { r = 0, g = 155, b = 255, a = 200, type = 7 },
+	marker = { r = 0, g = 155, b = 255, a = 200, type = 1 },
 	menu = {
 		x = 0.9,
 		y = 0.08,
@@ -52,7 +52,7 @@ local airshop = {
 }
 local fakecar = {model = '', car = nil}
 local airshop_locations = {
-{entering = {-1233.4050,-2883.5993,13.9450}, inside = {-1233.4050,-2883.5993,13.9450}, outside = {-1233.4050,-2883.5993,13.9450}},
+{entering = {-998.99,-2964.37,13.94}, inside = {-998.99,-2964.37,13.94}, outside = {-998.99,-2964.37,13.94}},
 }
 
 local airshop_blips ={}
@@ -101,7 +101,7 @@ function ShowAirshopBlips(bool)
 		Citizen.CreateThread(function()
 			while #airshop_blips > 0 do
 				Citizen.Wait(0)
-				local inrange = false
+				local inrange = false					
 				for i,b in ipairs(airshop_blips) do
 					if IsPlayerWantedLevelGreater(GetPlayerIndex(),0) == false and airshop.opened == false and IsPedInAnyVehicle(LocalPed(), true) == false and  GetDistanceBetweenCoords(b.pos.entering[1],b.pos.entering[2],b.pos.entering[3],GetEntityCoords(LocalPed())) < 5 then
 						DrawMarker(1,b.pos.entering[1],b.pos.entering[2],b.pos.entering[3],0,0,0,0,0,0,2.001,2.0001,0.5001,0,155,255,200,0,0,0,0)

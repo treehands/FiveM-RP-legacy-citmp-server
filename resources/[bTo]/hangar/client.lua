@@ -15,9 +15,9 @@ local inrangeofhangar = false
 local currentlocation = nil
 
 local hangares = {
-	{name="Hangar", colour=46, id=251, x=-999.92, y=-2995.49, z=12.94},
-  	{name="Hangar", colour=46, id=251, x=1740.29, y=3268.47, z=40.21},
-  	{name="Hangar", colour=46, id=251, x=2133.32, y=4808.77, z=40.19},
+	{name="Hangar", colour=46, id=307, x=-999.92, y=-2995.49, z=12.94},
+  	{name="Hangar", colour=46, id=307, x=1740.29, y=3268.47, z=40.21},
+  	{name="Hangar", colour=46, id=307, x=2133.32, y=4808.77, z=40.19},
 }
 
 hangarSelected = { {x=nil, y=nil, z=nil}, }
@@ -140,7 +140,7 @@ Citizen.CreateThread(function()
       SetBlipSprite(item.blip, item.id)
       SetBlipAsShortRange(item.blip, true)
 	    SetBlipColour(item.blip, item.colour)
-	    SetBlipScale(item.blip, 0.7)
+	    SetBlipScale(item.blip, 0.9)
       BeginTextCommandSetBlipName("STRING")
       AddTextComponentString(item.name)
       EndTextCommandSetBlipName(item.blip)
@@ -162,7 +162,8 @@ Citizen.CreateThread(function()
 	while true do
 		Wait(0)
 		DrawMarker(1,venta_location[1],venta_location[2],venta_location[3],0,0,0,0,0,0,3.001,3.0001,0.5001,0,155,255,200,0,0,0,0)
-		if GetDistanceBetweenCoords(venta_location[1],venta_location[2],venta_location[3],GetEntityCoords(LocalPed())) < 5 and IsPedInAnyVehicle(LocalPed(), true) == false then
+		--if GetDistanceBetweenCoords(venta_location[1],venta_location[2],venta_location[3],GetEntityCoords(LocalPed())) < 5 and IsPedInAnyVehicle(LocalPed(), true) == false then
+		if GetDistanceBetweenCoords(venta_location[1],venta_location[2],venta_location[3],GetEntityCoords(LocalPed())) < 5 then
 			drawTxt('Presiona ~g~E~s~ para destruir el avion',0,1,0.5,0.8,0.6,255,255,255,255)
 			if IsControlJustPressed(1, 86) then
 				TriggerServerEvent('ply_hangares:CheckForSelVeh',source)

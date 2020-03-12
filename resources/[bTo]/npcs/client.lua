@@ -53,7 +53,10 @@ local coordonate = {
 	{254.46,-48.95,68.94,"Vendedor",64.54,0x9E08633D,"s_m_y_ammucity_01"},
 	
 	-- AirShop
-    {-1231.32,-2879.23,12.9450,"AeroClub",147.27,0x62018559,"s_m_y_airworker"},
+    {-997.60,-2958.33,12.9450,"AeroClub",87.03,0x62018559,"s_m_y_airworker"},
+	
+	-- Simeon
+    {-32.13,-1114.37,26.42,"Simeon",70.06,"cs_siemonyetarian"},
 	
 }
 

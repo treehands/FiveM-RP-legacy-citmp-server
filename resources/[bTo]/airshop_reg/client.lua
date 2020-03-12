@@ -7,10 +7,10 @@ RegisterNetEvent("ply_aeroclub:CheckForRealVeh")
 --[[Local/Global]]--
 
 LICENCES = {}
-local aeroclub_location = {-1239.55,-2893.97,12.94}
+local aeroclub_location = {-992.29,-2981.27,12.94}
 local inrangeofgarage = false
 local currentlocation = nil
-local aeroclub = {title = "Registro", currentpos = nil, marker = { r = 0, g = 155, b = 255, a = 200, type = 1 }}
+local aeroclub = {title = "Registro", currentpos = nil, marker = { r = 255, g = 204, b = 0, a = 200, type = 1 }}
 
 
 
@@ -139,16 +139,17 @@ Citizen.CreateThread(function()
 	local loc = aeroclub_location
 	pos = aeroclub_location
 	local blip = AddBlipForCoord(pos[1],pos[2],pos[3])
-	SetBlipSprite(blip,90)
+	SetBlipSprite(blip,307)
 	SetBlipColour(blip,1)
 	BeginTextCommandSetBlipName("STRING")
 	AddTextComponentString('Registro de vehiculos')
 	EndTextCommandSetBlipName(blip)
 	SetBlipAsShortRange(blip,true)
 	SetBlipAsMissionCreatorBlip(blip,true)
+	SetBlipScale(blip, 0.9)
 	while true do
 		Wait(0)
-		DrawMarker(1,aeroclub_location[1],aeroclub_location[2],aeroclub_location[3],0,0,0,0,0,0,4.001,4.0001,0.5001,0,155,255,200,0,0,0,0)
+		DrawMarker(1,aeroclub_location[1],aeroclub_location[2],aeroclub_location[3],0,0,0,0,0,0,4.001,4.0001,0.5001,255,204,0,200,0,0,0,0)
 		if GetDistanceBetweenCoords(aeroclub_location[1],aeroclub_location[2],aeroclub_location[3],GetEntityCoords(LocalPed())) < 5 and IsPedInAnyVehicle(LocalPed(), true) == false then
 			drawTxt('Presiona ~g~E~s~ para abrir el menu',0,1,0.5,0.8,0.6,255,255,255,255)		
 			if IsControlJustPressed(1, 86) then
