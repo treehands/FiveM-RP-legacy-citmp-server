@@ -84,8 +84,8 @@ INSERT INTO `items` (`id`, `libelle`, `isIllegal`, `food`, `water`, `needs`, `li
 	(33, 'Planches', 0, '0', '0', '0', 15, 'object'),
 	(34, 'Raisins', 0, '5', '5', '0', 15, 'food'),
 	(36, 'Barril de vino', 0, '0', '0', '0', 15, 'object'),
-	(37, 'Hojas de cañamo', 1, '0', '0', '0', 15, 'object'),
-	(38, 'Marijuana', 1, '0', '0', '0', 15, 'object'),
+	(37, 'Hojas de Marihuana', 1, '0', '0', '0', 15, 'object'),
+	(38, 'Marihuana', 1, '0', '0', '0', 15, 'object'),
 	(40, 'Ensalada', 0, '30', '0', '0', NULL, 'food'),
 	(41, 'Agua', 0, '0', '20', '0', NULL, 'drink');
 /*!40000 ALTER TABLE `items` ENABLE KEYS */;
@@ -206,7 +206,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Volcando datos para la tabla gta5_gamemode_essential.users: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `identifier`, `player_state`, `group`, `permission_level`, `money`, `dirty_money`, `bankbalance`, `job`, `lastpos`, `personalvehicle`, `name`, `isFirstConnection`, `food`, `water`, `needs`, `enService`, `phone_number`) VALUES
-	(75, 'ip:26.60.248.214', 0, 'admin', 4, 300000, 199899998, 199899998, 20, '{-1298.85693359375, -2808.11669921875,  14.4076881408691, 359.997314453125}', 'vide', 'bTo', 0, 175, 175, 0, 1, '67HO462');
+	(75, 'ip:26.60.248.214', 0, 'admin', 4, 99999549999, 199899998, 199899998, 20, '{442.615173339844, -208.440826416016,  55.968864440918, 272.144470214844}', 'vide', 'bTo', 0, 60, 60, 0, 1, '67HO462');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Volcando estructura para tabla gta5_gamemode_essential.user_appartement
@@ -218,10 +218,12 @@ CREATE TABLE IF NOT EXISTS `user_appartement` (
   `money` int(11) NOT NULL DEFAULT 0,
   `dirtymoney` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla gta5_gamemode_essential.user_appartement: 0 rows
+-- Volcando datos para la tabla gta5_gamemode_essential.user_appartement: 1 rows
 /*!40000 ALTER TABLE `user_appartement` DISABLE KEYS */;
+INSERT INTO `user_appartement` (`id`, `identifier`, `name`, `price`, `money`, `dirtymoney`) VALUES
+	(9, 'ip:26.60.248.214', 'Terrasse Hotel', 100000, 0, 0);
 /*!40000 ALTER TABLE `user_appartement` ENABLE KEYS */;
 
 -- Volcando estructura para tabla gta5_gamemode_essential.user_clothes
@@ -277,8 +279,8 @@ CREATE TABLE IF NOT EXISTS `user_inventory` (
 -- Volcando datos para la tabla gta5_gamemode_essential.user_inventory: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `user_inventory` DISABLE KEYS */;
 INSERT INTO `user_inventory` (`user_id`, `item_id`, `quantity`) VALUES
-	('ip:26.60.248.214', 30, 100),
-	('ip:26.60.248.214', 31, 100),
+	('ip:26.60.248.214', 30, 0),
+	('ip:26.60.248.214', 31, 0),
 	('ip:26.60.248.214', 40, 0),
 	('ip:26.60.248.214', 41, 0);
 /*!40000 ALTER TABLE `user_inventory` ENABLE KEYS */;
@@ -327,6 +329,31 @@ CREATE TABLE IF NOT EXISTS `user_phonelist` (
 /*!40000 ALTER TABLE `user_phonelist` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user_phonelist` ENABLE KEYS */;
 
+-- Volcando estructura para tabla gta5_gamemode_essential.user_plane
+CREATE TABLE IF NOT EXISTS `user_plane` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `identifier` varchar(255) NOT NULL,
+  `vehicle_name` varchar(60) DEFAULT NULL,
+  `vehicle_model` varchar(60) DEFAULT NULL,
+  `vehicle_plate` varchar(60) DEFAULT NULL,
+  `vehicle_state` varchar(60) DEFAULT NULL,
+  `vehicle_colorprimary` varchar(60) DEFAULT NULL,
+  `vehicle_colorsecondary` varchar(60) DEFAULT NULL,
+  `vehicle_pearlescentcolor` varchar(60) NOT NULL,
+  `vehicle_wheelcolor` varchar(60) NOT NULL,
+  PRIMARY KEY (`ID`) USING BTREE,
+  KEY `fk_user_vehicle` (`identifier`) USING BTREE,
+  CONSTRAINT `user_plane_ibfk_1` FOREIGN KEY (`identifier`) REFERENCES `users` (`identifier`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+-- Volcando datos para la tabla gta5_gamemode_essential.user_plane: ~3 rows (aproximadamente)
+/*!40000 ALTER TABLE `user_plane` DISABLE KEYS */;
+INSERT INTO `user_plane` (`ID`, `identifier`, `vehicle_name`, `vehicle_model`, `vehicle_plate`, `vehicle_state`, `vehicle_colorprimary`, `vehicle_colorsecondary`, `vehicle_pearlescentcolor`, `vehicle_wheelcolor`) VALUES
+	(44, 'ip:26.60.248.214', 'stunt', 'stunt', '22HDK798', 'Rentré', '12', '12', '12', '12'),
+	(50, 'ip:26.60.248.214', 'velum', 'velum', '27JNC383', 'Rentré', '111', '111', '111', '111'),
+	(51, 'ip:26.60.248.214', 'stunt', 'stunt', '48GXT062', 'Rentré', '132', '132', '112', '112');
+/*!40000 ALTER TABLE `user_plane` ENABLE KEYS */;
+
 -- Volcando estructura para tabla gta5_gamemode_essential.user_vehicle
 CREATE TABLE IF NOT EXISTS `user_vehicle` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -342,14 +369,16 @@ CREATE TABLE IF NOT EXISTS `user_vehicle` (
   PRIMARY KEY (`ID`),
   KEY `fk_user_vehicle` (`identifier`),
   CONSTRAINT `fk_user_vehicle` FOREIGN KEY (`identifier`) REFERENCES `users` (`identifier`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla gta5_gamemode_essential.user_vehicle: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla gta5_gamemode_essential.user_vehicle: ~6 rows (aproximadamente)
 /*!40000 ALTER TABLE `user_vehicle` DISABLE KEYS */;
 INSERT INTO `user_vehicle` (`ID`, `identifier`, `vehicle_name`, `vehicle_model`, `vehicle_plate`, `vehicle_state`, `vehicle_colorprimary`, `vehicle_colorsecondary`, `vehicle_pearlescentcolor`, `vehicle_wheelcolor`) VALUES
 	(39, 'ip:26.60.248.214', 'gburrito', 'gburrito', 'bToEle', 'Rentré', '12', '12', '3', '3'),
 	(40, 'ip:26.60.248.214', 'cliffhanger', 'cliffhanger', 'bTo3Le', 'Rentré', '12', '12', '2', '2'),
-	(41, 'ip:26.60.248.214', 'prototipo', 'prototipo', 'bTo3L3', 'Rentré', '12', '12', '2', '2');
+	(41, 'ip:26.60.248.214', 'prototipo', 'prototipo', 'bTo3L3', 'Rentré', '12', '12', '2', '2'),
+	(42, 'ip:26.60.248.214', 'vindicator', 'vindicator', '48RIN046', 'Rentré', '2', '2', '3', '3'),
+	(43, 'ip:26.60.248.214', 'hotknife', 'hotknife', '41TJP820', 'Rentré', '29', '29', '5', '5');
 /*!40000 ALTER TABLE `user_vehicle` ENABLE KEYS */;
 
 -- Volcando estructura para tabla gta5_gamemode_essential.user_weapons
@@ -361,17 +390,19 @@ CREATE TABLE IF NOT EXISTS `user_weapons` (
   PRIMARY KEY (`id`),
   KEY `fk_user_weapon` (`identifier`),
   CONSTRAINT `fk_user_weapon` FOREIGN KEY (`identifier`) REFERENCES `users` (`identifier`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla gta5_gamemode_essential.user_weapons: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla gta5_gamemode_essential.user_weapons: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `user_weapons` DISABLE KEYS */;
 INSERT INTO `user_weapons` (`id`, `identifier`, `weapon_model`, `withdraw_cost`) VALUES
 	(63, 'ip:26.60.248.214', 'WEAPON_MACHETE', 10),
 	(64, 'ip:26.60.248.214', 'GADGET_PARACHUTE', 8),
 	(65, 'ip:26.60.248.214', 'WEAPON_COMBATPISTOL', 40),
-	(66, 'ip:26.60.248.214', 'WEAPON_GUSENBERG', 295),
 	(69, 'ip:26.60.248.214', 'WEAPON_FIREWORK', 100),
-	(70, 'ip:26.60.248.214', 'WEAPON_GUSENBERG', 295);
+	(70, 'ip:26.60.248.214', 'WEAPON_GUSENBERG', 295),
+	(71, 'ip:26.60.248.214', 'WEAPON_CARBINERIFLE', 2950),
+	(72, 'ip:26.60.248.214', 'WEAPON_SNIPERRIFLE', 3000),
+	(73, 'ip:26.60.248.214', 'WEAPON_ASSAULTRIFLE', 2950);
 /*!40000 ALTER TABLE `user_weapons` ENABLE KEYS */;
 
 -- Volcando estructura para tabla gta5_gamemode_essential.user_whitelist
@@ -394,7 +425,7 @@ CREATE TABLE IF NOT EXISTS `vehicles` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=174 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla gta5_gamemode_essential.vehicles: ~164 rows (aproximadamente)
+-- Volcando datos para la tabla gta5_gamemode_essential.vehicles: ~163 rows (aproximadamente)
 /*!40000 ALTER TABLE `vehicles` DISABLE KEYS */;
 INSERT INTO `vehicles` (`id`, `name`, `price`, `model`) VALUES
 	(1, 'Blista', 15000, 'blista'),
